@@ -54,6 +54,10 @@ client.once('ready', () => {
 
 client.on('messageCreate', async (message: Message) => {
     if (message.author.bot) return
+    if (message.content.includes(`@<${client.user!.id}>`)){
+        await message.reply("こんにちは!\n使い方を知りたい場合は`/help`を実行してね!")
+        return
+    }
 })
 
 client.on(Events.InteractionCreate, async interaction => {
