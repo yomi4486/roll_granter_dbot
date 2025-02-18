@@ -1,0 +1,7 @@
+services:
+  discordBot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: roll_bot
+    image: roll_bot:release
