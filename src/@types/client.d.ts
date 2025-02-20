@@ -1,11 +1,16 @@
-import { Client } from "discord.js";
+import { Client, CommandInteraction } from "discord.js";
 import type { Collection } from "discord.js";
 
 declare module "discord.js" {
-	interface Client {
-		commands: Collection<
-			string,
-			(interaction: CommandInteraction) => Promise<void>
-		>;
-	}
+  interface Command {
+    data: {
+      name: string;
+      description: string;
+    };
+    execute: (interaction: CommandInteraction) => Promise<void>;
+  }
+
+  interface Client {
+    commands: Collection<string, Command>;
+  }
 }
