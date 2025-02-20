@@ -6,4 +6,4 @@ docker-compose up -d
 ```
 
 ## 使用技術
-<img src="https://go-skill-icons.vercel.app/api/icons?i=typescript,discord,docker" />
+<img src="https://go-skill-icons.vercel.app/api/icons?i=typescript,discord,docker,jest,k8s" />
