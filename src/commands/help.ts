@@ -1,6 +1,6 @@
 import { SlashCommandBuilder,CommandInteraction,EmbedBuilder } from 'discord.js';
 
-module.exports = {
+const helpCommand = {
 	data: new SlashCommandBuilder()
 		.setName('help')
 		.setDescription('Botの説明を表示します'),
@@ -17,3 +17,5 @@ module.exports = {
         );
 	},
 };
+
+export default helpCommand;
