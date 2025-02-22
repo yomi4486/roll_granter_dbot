@@ -21,31 +21,27 @@ const client = new Client({
   partials: [Partials.Message, Partials.Channel],
 });
 
-const foldersPath = path.join(__dirname, "commands");
-const commandFolders = fs.readdirSync(foldersPath).filter(file => file.endsWith('.ts'));
+const folderPath = path.join(__dirname, "commands");
 
 client.commands = new Collection();
 
-for (const folder of commandFolders) {
-	const folderPath = path.join(foldersPath, folder);
-	const files = fs
-		.readdirSync(folderPath)
-		.filter((file) => file.endsWith(".js"));
+const files = fs
+    .readdirSync(folderPath)
+    .filter((file) => file.endsWith(".ts"));
 
-	for (const file of files) {
-		const filePath = path.join(folderPath, file);
+for (const file of files) {
+    const filePath = path.join(folderPath, file);
 
-		(async () => {
-			const command = await import(filePath);
-			if (command.data && command.execute) {
-				client.commands.set(command.data.name, command.execute);
-			} else {
-				console.log(
-					`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`,
-				);
-			}
-		})();
-	}
+    (async () => {
+        const command = await import(filePath);
+        if (command.data && command.execute) {
+            client.commands.set(command.data.name, command.execute);
+        } else {
+            console.log(
+                `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`,
+            );
+        }
+    })();
 }
 
 client.once('ready', () => {
