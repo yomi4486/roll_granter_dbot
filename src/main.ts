@@ -4,6 +4,8 @@ import dotenv from 'dotenv'
 import * as fs from 'fs';
 import * as path from 'path';
 
+const __dirname = import.meta.dirname;
+
 //.envファイルを読み込む
 dotenv.config()
 
